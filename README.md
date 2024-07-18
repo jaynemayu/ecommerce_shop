@@ -1,24 +1,30 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setting Up .env File
+To configure environment variables for this project, follow these steps:
 
-Things you may want to cover:
+- Copy .env.example: Duplicate the .env.example file and rename it to .env. You can do this using the following command in your terminal:
+```bash
+cp .env.example .env
+```
 
-* Ruby version
+- Edit .env File: Update the variables in .env to reflect your development environment. Ensure you do not include sensitive information in the .env file that should not be version-controlled.
 
-* System dependencies
+## Configuring Database
+After setting up your .env file with the necessary environment variables for your database configuration, follow these steps to initialize the database:
 
-* Configuration
+- Run Database Setup Command: In your terminal, execute the following command to create the development database specified in your .env file:
 
-* Database creation
+    ```bash
+    rails db:create
+    ```
+    This command will use the database credentials provided in your .env file to create the database specified for the development environment.
 
-* Database initialization
+- Verify Database Configuration: After running rails db:create, verify that the database has been successfully created by checking your database management tool or running:
 
-* How to run the test suite
+    ```bash
+    rails db:migrate
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+    This command ensures that any pending migrations are applied to your newly created database.
 
-* Deployment instructions
-
-* ...
+By following these steps, you ensure that your Rails application is properly configured to use the database specified in your .env file for development.
