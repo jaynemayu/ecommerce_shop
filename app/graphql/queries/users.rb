@@ -3,8 +3,6 @@ module Queries
     type [Types::UserType], null: false
 
     def resolve
-      # context[:current_user]
-      
       User.all
     end
   end

@@ -50,10 +50,3 @@ GraphiQL is a graphical interactive in-browser GraphQL IDE. To access it, follow
   http://localhost:3000/graphiql
   ```
   This will open the GraphiQL interface where you can run GraphQL queries and interact with your API.
-
-- Authentication: To make authenticated requests, include the following header with your access token:
-  ```bash
-  {
-    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
-  }
-  ```

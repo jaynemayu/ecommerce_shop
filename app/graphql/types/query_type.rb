@@ -2,8 +2,6 @@
 
 module Types
   class QueryType < Types::BaseObject
-    include Auth
-
     field :users, resolver: Queries::Users
 
     field :node, Types::NodeType, null: true, description: "Fetches an object given its ID." do
