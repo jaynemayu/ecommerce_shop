@@ -1,10 +1,29 @@
 class ApplicationController < ActionController::Base
+        include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
 
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def authenticate_user!
+    return if excluded_path?
+
+    redirect_to new_user_session_path
+  end
+
+  private
+
+  def excluded_path?
+    # graphql path
+    [
+      new_user_session_path, 
+      new_user_registration_path,
+      graphql_path
+    ].include?(request.path)
   end
 end

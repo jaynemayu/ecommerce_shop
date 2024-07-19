@@ -36,3 +36,24 @@ After setting up your .env file with the necessary environment variables for you
   This command will load the seed data defined in the db/seeds.rb file, which can include default records such as admin users, roles, or other necessary data for your application.
 
 By following these steps, you ensure that your Rails application is properly configured to use the database specified in your .env file for development, and that initial data is seeded correctly.
+
+## Using GraphiQL
+GraphiQL is a graphical interactive in-browser GraphQL IDE. To access it, follow these steps:
+
+- Start Rails Server: Ensure your Rails server is running by executing:
+  ```bash
+  rails server
+  ```
+
+- Open GraphiQL: In your web browser, navigate to:
+  ```bash
+  http://localhost:3000/graphiql
+  ```
+  This will open the GraphiQL interface where you can run GraphQL queries and interact with your API.
+
+- Authentication: To make authenticated requests, include the following header with your access token:
+  ```bash
+  {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+  }
+  ```
