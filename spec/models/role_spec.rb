@@ -25,18 +25,18 @@ RSpec.describe Role, type: :model do
     it 'is not valid with a duplicate name' do
       create(:role, name: subject.name)
       expect(subject).to_not be_valid
-      expect(subject.errors[:name]).to include("has already been taken")
+      expect(subject.errors[:name]).to include('has already been taken')
     end
 
     it 'is valid with a unique name' do
-      create(:role, name: "admin")
+      create(:role, name: 'admin')
       expect(subject).to be_valid
     end
 
     it 'is not valid with a level less than 1' do
       subject.level = 0
       expect(subject).to_not be_valid
-      expect(subject.errors[:level]).to include("must be greater than or equal to 1")
+      expect(subject.errors[:level]).to include('must be greater than or equal to 1')
     end
 
     it 'is valid with a level greater than or equal to 1' do
