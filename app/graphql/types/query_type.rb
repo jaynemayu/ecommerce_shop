@@ -3,6 +3,7 @@
 module Types
   class QueryType < Types::BaseObject
     field :users, resolver: Queries::Users
+    field :shops, resolver: Queries::Shops
 
     field :node, Types::NodeType, null: true, description: 'Fetches an object given its ID.' do
       argument :id, ID, required: true, description: 'ID of the object.'

@@ -51,8 +51,10 @@ gem 'devise_token_auth'
 
 gem 'graphql'
 gem 'graphiql-rails', group: :development
+gem 'kaminari'
 
 gem 'csv'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
