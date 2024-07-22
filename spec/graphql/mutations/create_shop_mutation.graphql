@@ -1,0 +1,24 @@
+mutation CreateShop(
+  $shopName: String!, 
+  $adminEmail: String!, 
+  $adminFirstName: String!, 
+  $adminLastName: String!
+) {
+  createShop(input:{
+    shopName: $shopName,
+    adminEmail: $adminEmail,
+    adminFirstName: $adminFirstName,
+    adminLastName: $adminLastName
+  }) {
+    shop {
+      id
+      name
+    }
+    adminUser {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+}

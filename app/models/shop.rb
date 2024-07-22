@@ -3,6 +3,8 @@
 class Shop < ApplicationRecord
   has_many :shop_users, dependent: :destroy
   has_many :users, through: :shop_users
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
 
 # == Schema Information
@@ -13,4 +15,8 @@ end
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_shops_on_name  (name) UNIQUE
 #
