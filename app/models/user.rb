@@ -2,6 +2,8 @@
 
 class User < ApplicationRecord
   belongs_to :role
+  has_many :shop_users, dependent: :destroy
+  has_many :shops, through: :shop_users
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
