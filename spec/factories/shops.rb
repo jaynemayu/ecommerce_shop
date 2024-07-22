@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :shop do
-    name { 'AroundUS' }
+    sequence(:name) { |n| "ShopName#{n}" }
   end
 end
 

@@ -3,6 +3,7 @@
 class Shop < ApplicationRecord
   has_many :shop_users, dependent: :destroy
   has_many :users, through: :shop_users
+  has_many :admins, -> { where(users: { role_id: Role.find_by(level: 10).id }) }, through: :shop_users, source: :user
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

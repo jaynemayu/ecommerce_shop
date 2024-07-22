@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Mutations::CreateShop, type: :request do
   let(:mutation) do
-    Rails.root.join('spec/graphql/mutations/create_shop_mutation.graphql').read
+    Rails.root.join('spec/graphql_files/mutations/create_shop_mutation.graphql').read
   end
 
   let(:variables) do
