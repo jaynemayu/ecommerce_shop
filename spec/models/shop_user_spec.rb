@@ -4,10 +4,22 @@
 require 'rails_helper'
 
 RSpec.describe ShopUser, type: :model do
+  let!(:super_admin_role) do
+    return Role.find_by(level: 99) if Role.exists?(level: 99)
+
+    create(:role, name: 'super_admin', level: 99)
+  end
+
+  let!(:admin_role) do
+    return Role.find_by(level: 10) if Role.exists?(level: 10)
+
+    create(:role, name: 'admin', level: 10)
+  end
+
   let!(:shop) { Shop.create!(name: 'Test Shop') }
   let!(:user) do
     User.create!(first_name: 'Test', last_name: 'User', email: 'test@example.com', password: 'password',
-                 password_confirmation: 'password', role: Role.find_by(level: 99))
+                 password_confirmation: 'password', role: super_admin_role)
   end
 
   context 'validations' do

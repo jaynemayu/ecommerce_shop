@@ -4,6 +4,7 @@
 require 'rails_helper'
 
 RSpec.describe Shop, type: :model do
+  before { Shop.delete_all }
   let!(:shop) { Shop.create!(name: 'Test Shop') }
 
   context 'validations' do
@@ -47,4 +48,8 @@ end
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_shops_on_name  (name) UNIQUE
 #

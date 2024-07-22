@@ -7,5 +7,5 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-task :annotate => 'annotate:models'
-Rake::Task["db:migrate"].enhance(["annotate"])
+task annotate: 'annotate_models'
+Rake::Task['db:migrate'].enhance(['annotate'])
