@@ -14,8 +14,10 @@ module Mutations
 
     def resolve(args)
       validate_uniqueness(args[:admin_email], args[:shop_name])
+
       admin_user = create_admin_user(args[:admin_email], args[:admin_first_name], args[:admin_last_name])
       shop = Shop.create!(name: args[:shop_name])
+      shop.admins << admin_user
 
       { shop:, admin_user: }
     rescue ActiveRecord::RecordInvalid => e
