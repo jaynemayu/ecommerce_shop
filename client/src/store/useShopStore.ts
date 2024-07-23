@@ -1,38 +1,13 @@
 import { ref, Ref } from 'vue'
 import { defineStore } from 'pinia'
-import gql from 'graphql-tag'
-import { useQuery, useMutation } from '@vue/apollo-composable'
-
-// Set up type gen
-interface AdminType {
-  firstName: string
-  lastName: string
-}
-
-interface ShopType {
-  id: string
-  name: string
-  admins: AdminType[]
-}
-
-interface ShopsQueryVariablesType {
-  page: number
-  perPage: number
-}
-
-interface CreateShopVariablesType {
-  shopName: string
-  adminEmail: string
-  adminFirstName: string
-  adminLastName: string
-}
-
-const shopsGql = gql`
-  ${require('./graphql/shops/shops.graphql').default}`
-const createShopGql = gql`
-  ${require('./graphql/shops/createShop.graphql').default}`
+import { useApolloClient } from '@vue/apollo-composable'
+import { ShopType, ShopsQueryVariablesType, CreateShopVariablesType } from '@/_types/types'
+import shopsGql from '@/graphql/shops/shops.graphql'
+import createShopGql from '@/graphql/shops/createShop.graphql'
 
 export const useShopStore = defineStore('shop', () => {
+  const client = useApolloClient().client
+
   const loading = ref(false)
 
   const shops = ref<ShopType[]>([]) as Ref<ShopType[]>
@@ -41,21 +16,22 @@ export const useShopStore = defineStore('shop', () => {
   const fetchShops = async (variables: ShopsQueryVariablesType): Promise<boolean> => {
     try {
       loading.value = true
-      const { result, error } = useQuery(shopsGql, { variables })
+      const { data, errors } = await client.query({
+        query: shopsGql,
+        variables
+      })
 
-      if (error) {
-        console.error(error)
+      if (errors) {
+        console.error('Query Error:', errors)
         
         return false
       }
 
-      
-
-      shops.value = result.value.shops as ShopType[]
+      shops.value = data.shops as ShopType[]
   
       return true
     } catch (error) {
-      console.error(error)
+      console.error('Catch Query Error:', error)
 
       return false
     } finally {
@@ -68,19 +44,20 @@ export const useShopStore = defineStore('shop', () => {
     try {
       loading.value = true
 
-      const { mutate, error } = useMutation(createShopGql)
+      const { errors } = await client.mutate({
+        mutation: createShopGql,
+        variables
+      })
 
-      if (error) {
-        console.error(error)
+      if (errors) {
+        console.error('Mutation Error:', errors)
 
         return false
       }
 
-      await mutate(variables)
-
       return true
     } catch (error) {
-      console.error(error)
+      console.error('Catch Mutation Error:', error)
 
       return false
     } finally {

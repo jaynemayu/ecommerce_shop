@@ -1,4 +1,4 @@
-query shops ($page: Int, $perPage: Int) {
+query Shops ($page: Int, $perPage: Int) {
   shops(page: $page, perPage: $perPage) {
     id
     name
