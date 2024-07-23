@@ -1,4 +1,4 @@
-mutation createShop(
+mutation CreateShop(
   $shopName: String!, 
   $adminEmail: String!, 
   $adminFirstName: String!, 
