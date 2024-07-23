@@ -46,6 +46,19 @@ RSpec.describe Mutations::CreateShop, type: :request do
     expect(data[:adminUser][:firstName]).to eq(variables[:adminFirstName])
     expect(data[:adminUser][:lastName]).to eq(variables[:adminLastName])
     expect(response).to have_http_status(:success)
+
+    shop_record = Shop.find_by(id: data[:shop][:id])
+    expect(shop_record).to be_present
+    expect(shop_record.name).to eq(variables[:shopName])
+
+    shop_admin_record = User.find_by(id: data[:adminUser][:id])
+    expect(shop_admin_record).to be_present
+    expect(shop_admin_record.email).to eq(variables[:adminEmail])
+    expect(shop_admin_record.first_name).to eq(variables[:adminFirstName])
+    expect(shop_admin_record.last_name).to eq(variables[:adminLastName])
+
+    shop_and_shop_admin_relationship = ShopUser.find_by(shop_id: shop_record.id, user_id: shop_admin_record.id)
+    expect(shop_and_shop_admin_relationship).to be_present
   end
 
   it 'returns an error if the shop name already exists' do
