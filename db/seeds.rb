@@ -19,12 +19,14 @@ CSV.foreach(csv_file_path, headers: true) do |row|
 end
 
 if User.count == 0
+  super_admin_role = Role.find_by(level: 99)
   User.create!(
     first_name: 'Super',
     last_name: 'Admin',
     email: 'superadmin@example.com',
     password: 'aA123456789',
-    password_confirmation: 'aA123456789'
+    password_confirmation: 'aA123456789',
+    role: super_admin_role
   )
 end
 
