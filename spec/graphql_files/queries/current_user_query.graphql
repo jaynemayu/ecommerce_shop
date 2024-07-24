@@ -1,0 +1,17 @@
+query {
+  currentUser {
+    id
+    email
+    firstName
+    lastName
+    role {
+      id
+      name
+      level
+    }
+    currentShop {
+      id
+      name
+    }
+  }
+}

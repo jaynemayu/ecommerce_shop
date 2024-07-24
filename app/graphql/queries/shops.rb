@@ -15,7 +15,7 @@ module Queries
       per_page = per_page.to_i
       per_page = 20 if per_page < 1
 
-      Shop.includes(:admins)
+      Shop.includes(admins: :role)
           .page(page)
           .per(per_page)
     end

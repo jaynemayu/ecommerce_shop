@@ -2,6 +2,7 @@
 
 module Types
   class QueryType < Types::BaseObject
+    field :current_user, resolver: Queries::CurrentUser
     field :users, resolver: Queries::Users
     field :shops, resolver: Queries::Shops
 
