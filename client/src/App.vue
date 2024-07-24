@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
   <div class="main">
     <div class="main-header">
-      <h1>Shop Name</h1>
+      <h1>{{ currentUser.currentShop?.name }}</h1>
       <div class="main-header-right">
         <p>Admin Portal</p>
         <div class="main-header-right-user">
@@ -45,6 +45,7 @@ onMounted(() => {
       display: flex;
       align-items: center;
       gap: 1.25rem;
+      font-weight: 500;
       &-user {
         display: flex;
         justify-content: center;

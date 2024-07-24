@@ -2,17 +2,16 @@
 import TabsPanel from '@/components/TabsPanel.vue'
 </script>
 <template>
-  <div class="dashboard">
+  <div class="orders">
     <TabsPanel />
-    <div class="dashboard-main">
-      <h2 class="header">Dashboard</h2>
+    <div class="orders-main">
+      <h2 class="orders-header">Orders</h2>
       <div class="dashboard-main-section">Main section here</div>
     </div>
   </div>
 </template>
-
 <style lang="scss">
-.dashboard {
+.orders {
   display: flex;
   gap: 1.25rem;
   &-main {
