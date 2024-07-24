@@ -1,0 +1,37 @@
+.tabs-panel {
+  background-color: #eee;
+  width: 18.75rem;
+  border-left: .0625rem solid #ddd;
+  border-right: .0625rem solid #ddd;
+  display: none;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  border-left: none;
+  border-right: none;
+  z-index: 2;
+  &.visible {
+    display: block;
+  }
+  @media (min-width: 769px) {
+    display: block;
+    position: static;
+    width: auto;
+    min-height: 37.5rem;
+  }
+  @media (min-width: 769px) {
+    width: 18.75rem;
+    border-left: .0625rem solid #ddd;
+    border-right: .0625rem solid #ddd;
+  }
+  &-tab {
+    cursor: pointer;
+    padding: .625rem 1.25rem;
+    border-bottom: .0625rem solid #ddd;
+    &.active {
+      font-weight: 600;
+    }
+  }
+}

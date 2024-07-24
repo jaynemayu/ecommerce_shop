@@ -1,25 +1,17 @@
 <script setup lang="ts">
-import TabsPanel from '@/components/TabsPanel.vue'
 </script>
 <template>
   <div class="dashboard">
-    <TabsPanel />
-    <div class="dashboard-main">
-      <h2 class="header">Dashboard</h2>
-      <div class="dashboard-main-section">Main section here</div>
-    </div>
+    <h2 class="header">Dashboard</h2>
+    <div class="dashboard-main">Main section here</div>
   </div>
 </template>
 
 <style lang="scss">
 .dashboard {
-  display: flex;
-  gap: 1.25rem;
+  margin: 1.25rem;
   &-main {
     margin-top: 1.25rem;
-    &-section {
-      margin-top: 1.25rem;
-    }
   }
 }
 </style>

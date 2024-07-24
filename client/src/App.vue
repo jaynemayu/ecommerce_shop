@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import useCurrentUser from '@/composables/useCurrentUser'
+import TabsPanel from './components/navigation/TabsPanel.vue'
 
 const {
   currentUser,
   fetchCurrentUser
 } = useCurrentUser()
+
+const mobileMenuRef = ref<InstanceType<typeof TabsPanel> | null>(null)
+const hamburgerRef = ref<HTMLButtonElement | null>(null)
+const showMobileMenu = ref<boolean>(false)
 
 const userInitials = computed<string>(() => {
   const firstInitial = currentUser.value?.firstName?.[0] || ''
@@ -14,14 +19,42 @@ const userInitials = computed<string>(() => {
   return `${firstInitial}${lastInitial}`
 })
 
+const toggleShowMobileMenu = (): void => {
+  showMobileMenu.value = !showMobileMenu.value
+}
+
+const handleClickOutside = (event: MouseEvent): void => {
+  const tabsPanelElement = mobileMenuRef.value?.$el as HTMLElement | undefined
+  const hamburgerElement = hamburgerRef.value
+
+  if (tabsPanelElement && !tabsPanelElement.contains(event.target as Node) &&
+      hamburgerElement && !hamburgerElement?.contains(event.target as Node)) {
+      showMobileMenu.value = false
+  }
+}
+
 onMounted(() => {
   fetchCurrentUser()
+  document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
 })
 </script>
 <template>
   <div class="main">
     <div class="main-header">
-      <h1>{{ currentUser.currentShop?.name }}</h1>
+      <div class="main-header-left">
+        <button
+          ref="hamburgerRef"
+          class="hamburger"
+          @click="toggleShowMobileMenu"
+        >
+          ☰
+        </button>
+        <h1>{{ currentUser.currentShop?.name }}</h1>
+      </div>
       <div class="main-header-right">
         <p>Admin Portal</p>
         <div class="main-header-right-user">
@@ -29,35 +62,16 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <router-view />
+    <div class="main-content">
+      <TabsPanel
+        ref="mobileMenuRef"
+        :show-mobile-menu="showMobileMenu"
+        @hide="() => { showMobileMenu = false }"
+      />
+      <router-view />
+    </div>
   </div>
 </template>
 <style lang="scss">
-.main {
-  &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.25rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1.25rem;
-    &-right {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      font-weight: 500;
-      &-user {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: .125rem solid #ccc;
-        border-radius: 50%;
-        width: 2rem;
-        height: 2rem;
-        background-color: #eee;
-        cursor: pointer;
-      }
-    }
-  }
-}
+@import './app.scss';
 </style>
