@@ -1,0 +1,65 @@
+[{
+  "id": "1",
+  "name": "Issue 04: Reimagine",
+  "status": "Published",
+  "price": "30.00 USD",
+  "category": "Physical",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "2",
+  "name": "Issue 04: Reimagine",
+  "status": "Published",
+  "price": "5.00 USD",
+  "category": "Digital",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "3",
+  "name": "Issue 03: Beginnings",
+  "status": "Published",
+  "price": "30.00 USD",
+  "category": "Physical",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "4",
+  "name": "Issue 03: Beginnings",
+  "status": "Published",
+  "price": "5.00 USD",
+  "category": "Digital",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "5",
+  "name": "Issue 02: Metamorphosis",
+  "status": "Archived",
+  "price": "30.00 USD",
+  "category": "Physical",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "6",
+  "name": "Issue 02: Metamorphosis",
+  "status": "Published",
+  "price": "5.00 USD",
+  "category": "Digital",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "7",
+  "name": "Issue 01: Heritage",
+  "status": "Archived",
+  "price": "30.00 USD",
+  "category": "Physical",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}, {
+  "id": "8",
+  "name": "Issue 01: Heritage",
+  "status": "Published",
+  "price": "5.00 USD",
+  "category": "Digital",
+  "updatedAt": 1721840702,
+  "createdAt": 1721840702
+}]

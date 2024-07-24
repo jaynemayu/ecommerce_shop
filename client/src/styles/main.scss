@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: $white;
-  background-color: $dark-background;
+  color: $dark-text;
+  background-color: $light-background;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -41,33 +41,6 @@ input {
   border: .0625rem solid $light-border;
   width: 100%;
   height: 1.75rem;
-}
-
-button {
-  cursor: pointer;
-  border-radius: .5rem;
-  border: .0625rem solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  transition: border-color 0.25s;
-  margin-top: 1.25rem;
-  &.accent {
-    background-color: $accent;
-    color: #fff;
-    &:hover {
-      background-color: $accent-tint;
-    }
-  }
-  &.normal {
-    background-color: $normal;
-    color: $dark-background;
-    &:hover {
-      background-color: $normal-tint;
-      color: $white;
-    }
-  }
 }
 
 .card {
