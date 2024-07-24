@@ -12,6 +12,8 @@ const mobileMenuRef = ref<InstanceType<typeof TabsPanel> | null>(null)
 const hamburgerRef = ref<HTMLButtonElement | null>(null)
 const showMobileMenu = ref<boolean>(false)
 
+const hideMenuRoutes = ['ShopNew']
+
 const userInitials = computed<string>(() => {
   const firstInitial = currentUser.value?.firstName?.[0] || ''
   const lastInitial = currentUser.value?.lastName?.[0] || ''
@@ -53,7 +55,7 @@ onBeforeUnmount(() => {
         >
           ☰
         </button>
-        <h1>{{ currentUser.currentShop?.name }}</h1>
+        <h1 @click="() => $router.push({ name: 'Dashboard' })">{{ currentUser.currentShop?.name }}</h1>
       </div>
       <div class="main-header-right">
         <p>Admin Portal</p>
@@ -64,6 +66,7 @@ onBeforeUnmount(() => {
     </div>
     <div class="main-content">
       <TabsPanel
+        v-if="!hideMenuRoutes.includes($route.name as string)"
         ref="mobileMenuRef"
         :show-mobile-menu="showMobileMenu"
         @hide="() => { showMobileMenu = false }"
@@ -73,5 +76,5 @@ onBeforeUnmount(() => {
   </div>
 </template>
 <style lang="scss">
-@import './app.scss';
+@import './styles/app.scss';
 </style>

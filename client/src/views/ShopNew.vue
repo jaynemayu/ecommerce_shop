@@ -62,26 +62,23 @@ const handleSubmit = async () => {
 
 <style lang="scss">
 .shop-new {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include col-center;
+  width: 100%;
   &-header {
     margin: 1.25rem;
   }
   &-form {
     width: 37.5rem;
     .form-group {
-      display: flex;
+      @include row-center;
       gap: .625rem;
-      align-items: center;
       margin-top: 1.25rem;
       label {
         width: 10rem;
       }
     }
     .form-actions {
-      display: flex;
-      justify-content: center;
+      @include row-center;
       gap: 1.25rem;
     }
   }
