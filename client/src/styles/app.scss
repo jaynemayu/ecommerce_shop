@@ -1,15 +1,15 @@
 .main {
   &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include row-between;
     padding: 0 1.25rem;
-    border-bottom: .0625rem solid #ddd;
+    border-bottom: .0625rem solid $light-border;
     padding-bottom: 1.25rem;
     &-left {
-      display: flex;
+      @include row-center;
       gap: 1.25rem;
-      align-items: center;
+      h1 {
+        cursor: pointer;
+      }
       .hamburger {
         display: block;
         background: none;
@@ -17,6 +17,7 @@
         font-size: 1.25rem;
         padding: 0;
         margin: 0;
+        color: $white;
         cursor: pointer;
         @media (min-width: 769px) {
           display: none;
@@ -24,24 +25,21 @@
       }
     }
     &-right {
-      display: flex;
-      align-items: center;
+      @include row-center;
       gap: 1.25rem;
       font-weight: 500;
       &-user {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: .125rem solid #ccc;
+        @include row-center;
+        border: .125rem solid $light-border;
         border-radius: 50%;
         width: 2rem;
         height: 2rem;
-        background-color: #eee;
+        background-color: $normal;
         cursor: pointer;
       }
     }
   }
   &-content {
-    display: flex;
+    @include row;
   }
 }

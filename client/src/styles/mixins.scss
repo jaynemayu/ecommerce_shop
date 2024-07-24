@@ -1,0 +1,35 @@
+// Flexbox
+@mixin row {
+  display: flex;
+}
+
+@mixin row-center {
+  @include row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin row-between {
+  @include row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin col-center {
+  @include col;
+  align-items: center;
+}
+
+// Fonts
+@mixin font-medium {
+  font-weight: 500;
+}
+
+@mixin font-semi-bold {
+  font-weight: 600;
+}
