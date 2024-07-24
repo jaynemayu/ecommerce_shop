@@ -22,8 +22,6 @@ const tabs = ['Dashboard', 'Products', 'Orders', 'Discounts']
 .dashboard {
   display: flex;
   gap: 1.25rem;
-  border-top: .0625rem solid #ddd;
-  margin-top: 1.25rem;
   &-panel {
     background-color: #eee;
     min-height: 37.5rem;
