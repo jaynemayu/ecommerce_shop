@@ -20,6 +20,9 @@ provide(DefaultApolloClient, apolloClient)
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 1.25rem;
+    border-bottom: .0625rem solid #ddd;
+    padding-bottom: 1.25rem;
   }
 }
 </style>
