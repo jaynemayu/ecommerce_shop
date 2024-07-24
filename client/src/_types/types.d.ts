@@ -20,3 +20,19 @@ export interface CreateShopVariablesType {
   adminFirstName: string
   adminLastName: string
 }
+
+export interface CurrentUserType {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  role: {
+    id: string
+    name: string
+    level: number
+  }
+  currentShop: {
+    id: string
+    name: string
+  }
+}
