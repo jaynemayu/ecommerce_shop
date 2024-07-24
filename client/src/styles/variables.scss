@@ -1,12 +1,18 @@
 $dark-background: #001935;
-$hover-tint: rgba(0, 184, 255, 0.1);
+$dark-hover-tint: rgba(0, 184, 255, 0.1);
+
+$light-background: rgb(240, 240, 240);
+$light-hover-tint: #F2F2F2;
 
 $white: #FFF;
+$inactive: #767676;
+$accent: #2491F6;
+$success: #019E53;
 $warning: #D0342C;
-$inactive: rgba(255, 255, 255, 0.65);
-$accent: rgba(0, 184, 255, 1);
-$normal: rgb(173, 172, 181);
-$accent-tint: rgba(0, 184, 255, 0.65);
-$normal-tint: rgb(173, 172, 181, 0.65);
+$normal: #D8D4DB;
+$accent-hover: #369BF8;
+$success-hover: #2EC35F;
+$normal-hover: #E5E5E5;
 
 $light-border: #D8D4DB;
+$dark-text: #363636;

@@ -33,3 +33,11 @@
 @mixin font-semi-bold {
   font-weight: 600;
 }
+
+@mixin font-12 {
+  font-size: .75rem;
+}
+
+@mixin font-14 {
+  font-size: .875rem;
+}

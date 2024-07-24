@@ -10,7 +10,7 @@
   border-left: none;
   border-right: none;
   z-index: 2;
-  background-color: $dark-background;
+  background-color: $light-background;
   min-height: 100vh;
   &.visible {
     display: block;
@@ -29,10 +29,10 @@
     padding: .625rem 1.25rem;
     color: $inactive;
     &.active {
-      color: $white;
+      color: $dark-text;
     }
     &:hover {
-      background-color: $hover-tint;
+      background-color: $dark-hover-tint;
     }
   }
 }

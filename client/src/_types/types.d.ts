@@ -36,3 +36,11 @@ export interface CurrentUserType {
     name: string
   }
 }
+
+export type ButtonTypeType = 'normal' | 'accent' | 'warning' | 'success' | 'disabled'
+
+export interface ButtonType {
+  title: string
+  type: ButtonTypeType
+  handler: () => any
+}
