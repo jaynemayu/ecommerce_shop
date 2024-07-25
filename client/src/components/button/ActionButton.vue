@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<{
   border-radius: .25rem;
   border: .0625rem solid $light-border;
   padding: .125rem 1rem;
+  min-width: 4.375rem;
   cursor: pointer;
   &-icon {
     height: 1rem;

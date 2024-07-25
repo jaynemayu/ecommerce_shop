@@ -18,10 +18,17 @@ const buttons: ButtonType[] = [
 ]
 </script>
 <template>
-  <div class="product">
-    <h6 class="product-header">{{ product.name }}</h6>
-    <div class="product-subheader">
-      <div class="product-subheader-actions">
+  <div class="product-edit">
+    <div class="product-edit-header">
+      <div class="product-edit-header-left">
+        <v-icon
+          name="pr-arrow-left"
+          class="product-edit-header-icon"
+          @click="() => $router.push({ name: 'Products' })"
+        />
+        <h6 class="product-edit-header-title">{{ product.name }}</h6>
+      </div>
+      <div class="product-edit-header-right">
         <ActionButton
           v-for="button in buttons"
           :key="button.title"
@@ -32,41 +39,34 @@ const buttons: ButtonType[] = [
         />
       </div>
     </div>
-    <div class="product-main">
-      <p>Product Information</p>
-      <ProductForm
-        :show-actions="true"
-      />
-    </div>
+    <ProductForm
+      :show-actions="true"
+    />
   </div>
 </template>
 <style lang="scss">
-.product {
-  margin: 1.25rem;
+.product-edit {
   width: 100%;
+  margin: 1.25rem;
   &-header {
-    @include font-medium;
-    @include font-14;
-  }
-  &-subheader {
-    @include row;
-    justify-content: space-between;
-    align-items: center;
-    &-info {
-      @include font-12;
-      color: $inactive;
+    @include row-between;
+    &-icon {
+      cursor: pointer;
     }
-    &-actions {
+    &-title {
+      @include font-medium;
+      @include font-14;
+    }
+    &-left {
       @include row;
-      align-items: center;
       gap: .375rem;
-      .search-bar {
-        width: 17.5rem;
-      }
+      align-items: center;
     }
-  }
-  &-table {
-    margin-top: 1.25rem;
+    &-right {
+      @include row;
+      gap: .375rem;
+      align-items: center;
+    }
   }
 }
 </style>

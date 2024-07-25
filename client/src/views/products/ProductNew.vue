@@ -8,14 +8,21 @@ const router = useRouter()
 
 const buttons: ButtonType[] = [
   { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'Products' }) },
-  { title: 'Save', type: 'success', handler: () => router.push({ name: 'Products' }) }
+  { title: 'Create', type: 'success', handler: () => router.push({ name: 'Products' }) }
 ]
 </script>
 <template>
-  <div class="product">
-    <h6 class="product-header">Product Information</h6>
-    <div class="product-subheader">
-      <div class="product-subheader-actions">
+  <div class="product-new">
+    <div class="product-new-header">
+      <div class="product-new-header-left">
+        <v-icon
+          name="pr-arrow-left"
+          class="product-new-header-icon"
+          @click="() => $router.push({ name: 'Products' })"
+        />
+        <h6 class="product-new-header-title">New Product</h6>
+      </div>
+      <div class="product-new-header-right">
         <ActionButton
           v-for="button in buttons"
           :key="button.title"
@@ -26,39 +33,33 @@ const buttons: ButtonType[] = [
         />
       </div>
     </div>
-    <div class="product-main">
-      <ProductForm
-      />
-    </div>
+    <ProductForm
+    />
   </div>
 </template>
 <style lang="scss">
-.product {
-  margin: 1.25rem;
+.product-new {
   width: 100%;
+  margin: 1.25rem;
   &-header {
-    @include font-medium;
-    @include font-14;
-  }
-  &-subheader {
-    @include row;
-    justify-content: space-between;
-    align-items: center;
-    &-info {
-      @include font-12;
-      color: $inactive;
+    @include row-between;
+    &-icon {
+      cursor: pointer;
     }
-    &-actions {
+    &-title {
+      @include font-medium;
+      @include font-14;
+    }
+    &-left {
       @include row;
-      align-items: center;
       gap: .375rem;
-      .search-bar {
-        width: 17.5rem;
-      }
+      align-items: center;
     }
-  }
-  &-table {
-    margin-top: 1.25rem;
+    &-right {
+      @include row;
+      gap: .375rem;
+      align-items: center;
+    }
   }
 }
 </style>
