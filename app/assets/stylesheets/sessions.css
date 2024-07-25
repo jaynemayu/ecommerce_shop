@@ -1,0 +1,83 @@
+/* app/assets/stylesheets/sessions.css */
+
+body {
+  background-color: #f0f2f5;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: left;
+  color: #6c6c6c;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #4f4f4f;
+}
+
+.field input {
+  width: calc(100% - 22px);
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.field input[type="checkbox"] {
+  margin-right: 8px;
+  vertical-align: middle; /* Align checkbox with label */
+}
+
+.remember-me {
+  margin-bottom: 20px;
+}
+
+.remember-me label {
+  display: inline;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions input[type="submit"] {
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #0056b3;
+}
