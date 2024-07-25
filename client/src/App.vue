@@ -12,7 +12,7 @@ const mobileMenuRef = ref<InstanceType<typeof TabsPanel> | null>(null)
 const hamburgerRef = ref<HTMLButtonElement | null>(null)
 const showMobileMenu = ref<boolean>(false)
 
-const hideMenuRoutes = ['ShopNew']
+const hideMenuRoutes = ['ShopNew', 'ProductNew', 'ProductEdit']
 
 const userInitials = computed<string>(() => {
   const firstInitial = currentUser.value?.firstName?.[0] || ''

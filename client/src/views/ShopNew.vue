@@ -76,7 +76,6 @@ const handleSubmit = async () => {
       }
       input {
         width: 100%;
-        height: 1.75rem;
       }
     }
     .form-actions {
