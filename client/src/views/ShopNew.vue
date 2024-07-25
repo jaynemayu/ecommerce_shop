@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import useShops from '@/composables/useShops'
+import ActionButton from '@/components/button/ActionButton.vue'
 
 const router = useRouter()
 
@@ -11,7 +12,7 @@ const handleSubmit = async () => {
 
   if (success) {
     console.log('Successfully created shop')
-    router.push({ name: 'Dashboard' })
+    router.push({ name: 'DashboardView' })
   } else {
     console.log('Failed to create shop')
   }
@@ -43,18 +44,16 @@ const handleSubmit = async () => {
         <input type="text" id="lastName" v-model="formData.adminLastName" required />
       </div>
       <div class="form-actions">
-        <button
-          class="normal"
-          @click="() => $router.push({ name: 'Dashboard' })"
-        >
-          Cancel
-        </button>
-        <button
-          class="accent"
-          type="submit"
-        >
-          Create Shop
-        </button>
+        <ActionButton
+          type="normal"
+          title="Cancel"
+          @click="() => $router.push({ name: 'DashboardView' })"
+        />
+        <ActionButton
+          type="accent"
+          title="Submit"
+          @click="handleSubmit"
+        />
       </div>
     </form>
   </div>
@@ -80,6 +79,7 @@ const handleSubmit = async () => {
     .form-actions {
       @include row-center;
       gap: 1.25rem;
+      margin-top: 1.25rem;
     }
   }
 }

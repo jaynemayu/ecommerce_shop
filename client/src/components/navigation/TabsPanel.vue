@@ -13,16 +13,16 @@ const isActive = (path: string): boolean => {
 }
 
 const tabs = computed(() => [{
-  name: 'Dashboard',
+  name: 'DashboardView',
   isActive: isActive('/dashboard')
 }, {
-  name: 'Products',
+  name: 'ProductList',
   isActive: isActive('/products')
 }, {
-  name: 'Orders',
+  name: 'OrderList',
   isActive: isActive('/orders')
 }, {
-  name: 'Discounts',
+  name: 'DiscountList',
   isActive: isActive('/discounts')
 }])
 

@@ -4,10 +4,16 @@ import { ButtonTypeType } from '@/_types/types'
 const props = defineProps<{
   type: ButtonTypeType
   title: string
+  icon?: string
 }>()
 </script>
 <template>
   <button :class="['action-button', type]">
+    <v-icon
+      v-if="icon"
+      :name="icon"
+      class="action-button-icon"
+    />
     {{ props.title }}
   </button>
 </template>
@@ -19,6 +25,11 @@ const props = defineProps<{
   border: .0625rem solid $light-border;
   padding: .125rem 1rem;
   cursor: pointer;
+  &-icon {
+    height: 1rem;
+    width: 1rem;
+    margin-right: .125rem;
+  }
   &.accent {
     background-color: $accent;
     color: $white;

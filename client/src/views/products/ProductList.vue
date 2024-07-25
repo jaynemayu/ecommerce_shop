@@ -1,37 +1,58 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { formatDateTime } from '@/utils/datetime'
 import { ButtonType } from '@/_types/types'
 import DataTable from '@/components/table/DataTable.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
-import products from '@/mockData/products.json'
+import SearchBar from '@/components/search_bar/SearchBar.vue'
+import products from '@/mock_data/products.json'
+
+const router = useRouter()
+
+const filteredProducts = ref<typeof products>(products)
 
 const headers: string[] = ['Name', 'Status', 'Price', 'Category', 'Modified', 'Published']
 const buttons: ButtonType[] = [
-  { title: 'Filter', type: 'normal', handler: () => {} },
-  { title: 'Select', type: 'normal', handler: () => {} },
-  { title: 'New Product', type: 'success', handler: () => {} }
+  { title: 'Filter', type: 'normal', icon: 'pr-filter', handler: () => {} },
+  { title: 'Select', type: 'normal', icon: 'pr-check-square', handler: () => {} },
+  { title: 'New Product', type: 'success', icon: 'pr-plus', handler: () => router.push({ name: 'ProductNew' }) }
 ]
+
+const handleSearch = (val: string): void => {
+  const searchVal = val.toLowerCase()
+  if (!val) {
+    filteredProducts.value = products
+  } else {
+    filteredProducts.value = products.filter(product => {
+      const nameWords = product.name.toLowerCase().split(' ')
+
+      return nameWords.some(word => word.includes(searchVal))
+    })
+  }
+}
+
+const handleProductClick = (id: string): void => {
+  router.push({ name: 'ProductEdit', params: { id } })
+}
 </script>
 <template>
   <div class="products">
     <h6 class="products-header">Products</h6>
     <div class="products-subheader">
       <p class="products-subheader-info">
-        {{ `${products.length || 0} Products` }}
+        {{ `${filteredProducts.length || 0} Products` }}
       </p>
       <div class="products-subheader-actions">
-        <input
-          class="search-bar"
-          id="search"
-          name="search"
-          type="text"
-          placeholder="Search products..."
+        <SearchBar
+          @update="(val) => handleSearch(val)"
         />
         <ActionButton
           v-for="button in buttons"
           :key="button.title"
           :title="button.title"
           :type="button.type"
+          :icon="button.icon"
           @click="button.handler"
         />
       </div>
@@ -41,8 +62,9 @@ const buttons: ButtonType[] = [
       :headers="headers"
     >
       <tr
-        v-for="product in products"
+        v-for="product in filteredProducts"
         :key="product.id"
+        @click="() => handleProductClick(product.id)"
       >
         <td>{{ product.name }}</td>
         <td>{{ product.status }}</td>
