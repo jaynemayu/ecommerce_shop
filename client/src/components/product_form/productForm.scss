@@ -1,7 +1,6 @@
 .product-form {
   &-container {
-    @include col;
-    gap: 1rem;
+
     background-color: $white;
     border: .0625rem solid $light-border;
     border-radius: .25rem;
@@ -13,6 +12,8 @@
     padding: 1.25rem 1.25rem 0 1.25rem;
   }
   &-fields {
+    @include col;
+    gap: 1rem;
     padding: 1.25rem;
   }
   &-actions {

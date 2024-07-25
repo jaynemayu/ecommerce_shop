@@ -58,3 +58,11 @@ export interface ProductType {
   updatedAt: number
   createdAt: number
 }
+
+export interface ProductFormType {
+  type: string
+  name: string
+  slug: string
+  description: string
+  categories: string[]
+}

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ButtonType } from '@/_types/types'
+import { ButtonType, ProductFormType } from '@/_types/types'
 import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 
@@ -10,6 +11,14 @@ const buttons: ButtonType[] = [
   { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'Products' }) },
   { title: 'Create', type: 'success', handler: () => router.push({ name: 'Products' }) }
 ]
+
+const formData = ref<ProductFormType>({
+  type: '',
+  name: '',
+  slug: '',
+  description: '',
+  categories: []
+})
 </script>
 <template>
   <div class="product-new">
@@ -34,6 +43,7 @@ const buttons: ButtonType[] = [
       </div>
     </div>
     <ProductForm
+      :initial-form="formData"
     />
   </div>
 </template>
