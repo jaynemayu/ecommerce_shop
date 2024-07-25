@@ -41,7 +41,7 @@ $input-padding: 1.5rem;
   }
   &-input {
     padding-left: $input-padding;
-    width: calc(100% - $input-padding - ($icon-padding / 2));
+    width: 17.5rem;
   }
 }
 </style>

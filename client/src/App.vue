@@ -48,13 +48,12 @@ onBeforeUnmount(() => {
   <div class="main">
     <div class="main-header">
       <div class="main-header-left">
-        <button
+        <v-icon
+          name="pr-bars"
           ref="hamburgerRef"
           class="hamburger"
           @click="toggleShowMobileMenu"
-        >
-          ☰
-        </button>
+        />
         <h1 @click="() => $router.push({ name: 'Dashboard' })">{{ currentUser.currentShop?.name }}</h1>
       </div>
       <div class="main-header-right">

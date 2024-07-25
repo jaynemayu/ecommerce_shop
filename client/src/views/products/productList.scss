@@ -1,0 +1,50 @@
+.products {
+  margin: 1.25rem;
+  width: 100%;
+  &-header {
+    @include font-medium;
+    @include font-14;
+  }
+  &-subheader {
+    @media (min-width: 769px) {
+      @include row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-info {
+      @include font-12;
+      color: $inactive;
+    }
+    &-actions {
+      @include col;
+      gap: .625rem;
+      max-width: 18.75rem;
+      margin-top: .625rem;
+      @media (min-width: 769px) {
+        @include row;
+        align-items: center;
+        gap: .375rem;
+        max-width: unset;
+        margin-top: unset;
+      }
+      &-buttons {
+        @include row;
+        align-items: center;
+        gap: .375rem;
+        .search-bar {
+          width: 17.5rem;
+        }
+      }
+    }
+  }
+  &-table {
+    margin-top: 1.25rem;
+    img {
+      width: 1.5rem;
+    }
+    span {
+      vertical-align: top;
+      margin-left: .375rem;
+    }
+  }
+}

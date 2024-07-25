@@ -1,6 +1,7 @@
 // Flexbox
 @mixin row {
   display: flex;
+  flex-direction: row;
 }
 
 @mixin row-center {
