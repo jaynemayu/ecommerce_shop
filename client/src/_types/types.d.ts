@@ -42,5 +42,6 @@ export type ButtonTypeType = 'normal' | 'accent' | 'warning' | 'success' | 'disa
 export interface ButtonType {
   title: string
   type: ButtonTypeType
+  icon?: string
   handler: () => any
 }

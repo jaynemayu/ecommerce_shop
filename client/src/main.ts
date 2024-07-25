@@ -6,6 +6,11 @@ import App from './App.vue'
 import router from './router'
 import './styles/main.scss'
 
+import { OhVueIcon, addIcons } from 'oh-vue-icons'
+import { PrSearch, PrPlus, PrCheckSquare, PrFilter } from 'oh-vue-icons/icons'
+
+addIcons(PrSearch, PrPlus, PrCheckSquare, PrFilter)
+
 const app = createApp({
   setup() {
     provide(DefaultApolloClient, apolloClient);
@@ -14,6 +19,7 @@ const app = createApp({
 })
 const pinia = createPinia()
 
+app.component('v-icon', OhVueIcon)
 app.use(router)
 app.use(pinia)
 app.mount('#app')
