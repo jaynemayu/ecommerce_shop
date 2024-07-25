@@ -6,8 +6,8 @@ import ActionButton from '@/components/button/ActionButton.vue'
 const router = useRouter()
 
 const buttons: ButtonType[] = [
-  { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'ProductList' }) },
-  { title: 'Save', type: 'success', handler: () => router.push({ name: 'ProductList' }) }
+  { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'Products' }) },
+  { title: 'Save', type: 'success', handler: () => router.push({ name: 'Products' }) }
 ]
 </script>
 <template>

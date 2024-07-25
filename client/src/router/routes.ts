@@ -7,7 +7,7 @@ const productRoutes: RouteRecordRaw[] = [
     redirect: { name: 'Products' },
     children: [{
       path: '',
-      name: 'ProductList',
+      name: 'Products',
       component: () => import('../views/products/ProductList.vue')
     }, {
       path: ':id/edit',
@@ -16,16 +16,16 @@ const productRoutes: RouteRecordRaw[] = [
     }, {
       path: 'new',
       name: 'ProductNew',
-      component: () => import('../views/products/ProductEdit.vue')
+      component: () => import('../views/products/ProductNew.vue')
     }]
   }
 ]
 
 export const routes: RouteRecordRaw[] = [
   { path: '/', redirect: { name: 'DashboardView' } },
-  { path: '/dashboard', name: 'DashboardView', component: () => import('../views/DashboardView.vue') },
+  { path: '/dashboard', name: 'Dashboard', component: () => import('../views/DashboardView.vue') },
   ...productRoutes,
-  { path: '/orders', name: 'OrderList', component: () => import('../views/OrderList.vue') },
-  { path: '/discounts', name: 'DiscountList', component: () => import('../views/DiscountList.vue') },
+  { path: '/orders', name: 'Orders', component: () => import('../views/OrderList.vue') },
+  { path: '/discounts', name: 'Discounts', component: () => import('../views/DiscountList.vue') },
   { path: '/shops/new', name: 'ShopNew', component: () => import('../views/ShopNew.vue') }
 ]

@@ -12,7 +12,7 @@ const handleSubmit = async () => {
 
   if (success) {
     console.log('Successfully created shop')
-    router.push({ name: 'DashboardView' })
+    router.push({ name: 'Dashboard' })
   } else {
     console.log('Failed to create shop')
   }
@@ -47,7 +47,7 @@ const handleSubmit = async () => {
         <ActionButton
           type="normal"
           title="Cancel"
-          @click="() => $router.push({ name: 'DashboardView' })"
+          @click="() => $router.push({ name: 'Dashboard' })"
         />
         <ActionButton
           type="accent"
