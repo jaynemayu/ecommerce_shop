@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path
   end
 
+  def after_sign_in_path_for(resource)
+    ENV['FRONTEND_URL'] || 'http://127.0.0.1:5173/'
+  end
+
   private
 
   def excluded_path?
