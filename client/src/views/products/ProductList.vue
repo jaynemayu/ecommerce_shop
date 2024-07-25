@@ -35,6 +35,10 @@ const handleSearch = (val: string): void => {
 const handleProductClick = (id: string): void => {
   router.push({ name: 'ProductEdit', params: { id } })
 }
+
+const getImageUrl = (name: string): string => {
+  return new URL(`/src/assets/images/${name}.png`, import.meta.url)?.href
+}
 </script>
 <template>
   <div class="products">
@@ -66,7 +70,14 @@ const handleProductClick = (id: string): void => {
         :key="product.id"
         @click="() => handleProductClick(product.id)"
       >
-        <td>{{ product.name }}</td>
+        <td>
+          <!-- TODO: Add empty image grey rectangle -->
+          <img
+            :src="getImageUrl(product.image)"
+            alt="Product thumbnail"
+          />
+          <span>{{ product.name }}</span>
+        </td>
         <td>{{ product.status }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.category }}</td>
@@ -103,6 +114,13 @@ const handleProductClick = (id: string): void => {
   }
   &-table {
     margin-top: 1.25rem;
+    img {
+      width: 1.5rem;
+    }
+    span {
+      vertical-align: top;
+      margin-left: .375rem;
+    }
   }
 }
 </style>

@@ -4,6 +4,7 @@
   "status": "Published",
   "price": "30.00 USD",
   "category": "Physical",
+  "image": "issue_04",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -12,6 +13,7 @@
   "status": "Published",
   "price": "5.00 USD",
   "category": "Digital",
+  "image": "issue_04",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -20,6 +22,7 @@
   "status": "Published",
   "price": "30.00 USD",
   "category": "Physical",
+  "image": "issue_03",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -28,6 +31,7 @@
   "status": "Published",
   "price": "5.00 USD",
   "category": "Digital",
+  "image": "issue_03",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -36,6 +40,7 @@
   "status": "Archived",
   "price": "30.00 USD",
   "category": "Physical",
+  "image": "issue_02",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -44,6 +49,7 @@
   "status": "Published",
   "price": "5.00 USD",
   "category": "Digital",
+  "image": "issue_02",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -52,6 +58,7 @@
   "status": "Archived",
   "price": "30.00 USD",
   "category": "Physical",
+  "image": "issue_01",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }, {
@@ -60,6 +67,7 @@
   "status": "Published",
   "price": "5.00 USD",
   "category": "Digital",
+  "image": "issue_01",
   "updatedAt": 1721840702,
   "createdAt": 1721840702
 }]
