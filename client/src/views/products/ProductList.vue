@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { formatDateTime } from '@/utils/datetime'
-import { ButtonType } from '@/_types/types'
+import { ProductType as Product, ButtonType } from '@/_types/types'
+import { ProductStatus, ProductType } from '@/enums/product'
 import DataTable from '@/components/table/DataTable.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 import SearchBar from '@/components/search_bar/SearchBar.vue'
@@ -10,7 +11,7 @@ import products from '@/mock_data/products.json'
 
 const router = useRouter()
 
-const filteredProducts = ref<typeof products>(products)
+const filteredProducts = ref<Product[]>(products as Product[])
 
 const headers: string[] = ['Name', 'Status', 'Price', 'Category', 'Modified', 'Published']
 const buttons: ButtonType[] = [
@@ -22,13 +23,13 @@ const buttons: ButtonType[] = [
 const handleSearch = (val: string): void => {
   const searchVal = val.toLowerCase()
   if (!val) {
-    filteredProducts.value = products
+    filteredProducts.value = products as Product[]
   } else {
     filteredProducts.value = products.filter(product => {
       const nameWords = product.name.toLowerCase().split(' ')
 
       return nameWords.some(word => word.includes(searchVal))
-    })
+    }) as Product[]
   }
 }
 
@@ -78,9 +79,9 @@ const getImageUrl = (name: string): string => {
           />
           <span>{{ product.name }}</span>
         </td>
-        <td>{{ product.status }}</td>
+        <td>{{ ProductStatus[product.status] }}</td>
         <td>{{ product.price }}</td>
-        <td>{{ product.category }}</td>
+        <td>{{ ProductType[product.type] }}</td>
         <td>{{ formatDateTime(product.updatedAt) }}</td>
         <td>{{ formatDateTime(product.createdAt) }}</td>
       </tr>

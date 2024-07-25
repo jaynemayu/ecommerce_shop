@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { formatDateTime } from '@/utils/datetime'
 import { ButtonType } from '@/_types/types'
+import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 import products from '@/mock_data/products.json'
 
@@ -34,7 +34,9 @@ const buttons: ButtonType[] = [
     </div>
     <div class="product-main">
       <p>Product Information</p>
-      <form></form>
+      <ProductForm
+        :show-actions="true"
+      />
     </div>
   </div>
 </template>
