@@ -9,20 +9,20 @@ const route = useRoute()
 const router = useRouter()
 
 const isActive = (path: string): boolean => {
-  return route.fullPath === path
+  return route.fullPath.includes(path)
 }
 
 const tabs = computed(() => [{
-  name: 'DashboardView',
+  name: 'Dashboard',
   isActive: isActive('/dashboard')
 }, {
-  name: 'ProductList',
+  name: 'Products',
   isActive: isActive('/products')
 }, {
-  name: 'OrderList',
+  name: 'Orders',
   isActive: isActive('/orders')
 }, {
-  name: 'DiscountList',
+  name: 'Discounts',
   isActive: isActive('/discounts')
 }])
 
