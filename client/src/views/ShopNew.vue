@@ -45,7 +45,6 @@ const handleSubmit = async () => {
       </div>
       <div class="form-actions">
         <ActionButton
-          type="normal"
           title="Cancel"
           @click="() => $router.push({ name: 'Dashboard' })"
         />
@@ -74,6 +73,10 @@ const handleSubmit = async () => {
       margin-top: 1.25rem;
       label {
         width: 10rem;
+      }
+      input {
+        width: 100%;
+        height: 1.75rem;
       }
     }
     .form-actions {

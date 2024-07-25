@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ButtonType } from '@/_types/types'
+import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 
 const router = useRouter()
@@ -26,8 +27,8 @@ const buttons: ButtonType[] = [
       </div>
     </div>
     <div class="product-main">
-      <form></form>
-      Product form here
+      <ProductForm
+      />
     </div>
   </div>
 </template>

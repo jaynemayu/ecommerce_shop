@@ -7,9 +7,9 @@ import router from './router'
 import './styles/main.scss'
 
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
-import { PrSearch, PrPlus, PrCheckSquare, PrFilter } from 'oh-vue-icons/icons'
+import { PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive } from 'oh-vue-icons/icons'
 
-addIcons(PrSearch, PrPlus, PrCheckSquare, PrFilter)
+addIcons(PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive)
 
 const app = createApp({
   setup() {

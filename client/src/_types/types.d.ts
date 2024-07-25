@@ -45,3 +45,16 @@ export interface ButtonType {
   icon?: string
   handler: () => any
 }
+
+export interface ProductType {
+  id: string
+  name: string
+  slug: string
+  status: 'published' | 'unpublished' | 'archived'
+  price: string
+  type: 'physical' | 'digital' | 'service' | 'advanced'
+  categories: string[]
+  image: string
+  updatedAt: number
+  createdAt: number
+}

@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { withDefaults } from 'vue'
 import { ButtonTypeType } from '@/_types/types'
 
-const props = defineProps<{
-  type: ButtonTypeType
-  title: string
+const props = withDefaults(defineProps<{
+  type?: ButtonTypeType
+  title?: string
   icon?: string
-}>()
+}>(), {
+  type: 'normal'
+})
 </script>
 <template>
   <button :class="['action-button', type]">

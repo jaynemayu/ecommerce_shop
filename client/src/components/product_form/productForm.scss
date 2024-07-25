@@ -1,0 +1,60 @@
+.product-form {
+  @include col;
+  gap: 1rem;
+  background-color: $white;
+  border: .0625rem solid $light-border;
+  border-radius: .25rem;
+  margin-top: 1.25rem;
+  &-fields {
+    padding: 1.25rem;
+  }
+  &-actions {
+    @include row;
+    align-items: center;
+    gap: .375rem;
+    border-top: .0625rem solid $light-border;
+    padding: 1.25rem;
+  }
+  .form-group {
+    @include col;
+    label {
+      @include font-12;
+      margin-bottom: 0.5rem;
+    }
+    input,
+    select,
+    textarea {
+      padding: 0.5rem;
+      border: .0625rem solid $light-border;
+      border-radius: .25rem;
+    }
+  }
+  .categories {
+    &-input {
+      @include row;
+      input {
+        flex-grow: 1;
+      }
+    }
+    &-badges {
+      @include row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: .625rem;
+      .category-badge {
+        @include row-center;
+        background-color: $accent;
+        color: $white;
+        padding: 0.25rem 0.5rem;
+        border-radius: .25rem;
+        button {
+          background: none;
+          border: none;
+          color: $white;
+          margin-left: 0.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
