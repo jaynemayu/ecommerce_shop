@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ButtonType } from '@/_types/types'
+import { ButtonType, ProductFormType } from '@/_types/types'
 import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 import products from '@/mock_data/products.json'
@@ -16,6 +17,14 @@ const buttons: ButtonType[] = [
   { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'Products' }) },
   { title: 'Save', type: 'success', handler: () => router.push({ name: 'Products' }) }
 ]
+
+const formData = ref<ProductFormType>({
+  type: product.type,
+  name: product.name,
+  slug: product.slug,
+  description: product.description,
+  categories: product.categories
+})
 </script>
 <template>
   <div class="product-edit">
@@ -41,6 +50,7 @@ const buttons: ButtonType[] = [
     </div>
     <ProductForm
       :show-actions="true"
+      :initial-form="formData"
     />
   </div>
 </template>

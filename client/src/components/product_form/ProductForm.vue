@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, watch, withDefaults } from 'vue'
-import { ButtonType } from '@/_types/types'
+import { ButtonType, ProductFormType } from '@/_types/types'
 import ActionButton from '@/components/button/ActionButton.vue'
 
 const props = withDefaults(defineProps<{
   showActions?: boolean
+  initialForm: ProductFormType
 }>(), {
   showActions: false
 })
@@ -16,20 +17,19 @@ const emit = defineEmits<{
   duplicate: []
 }>()
 
-const productTypes = ['Physical', 'Digital', 'Service', 'Advanced']
+const types = [
+  { code: 'physical', name: 'Physical' },
+  { code: 'digital', name: 'Digital' },
+  { code: 'service', name: 'Service' },
+  { code: 'advanced', name: 'Advanced' },
+]
 const buttons: ButtonType[] = [
   { title: 'Delete', type: 'normal', icon: 'pr-trash', handler: () => {} },
   { title: 'Archive', type: 'normal', icon: 'bi-archive', handler: () => {} },
   { title: 'Duplicate', type: 'success', icon: 'pr-copy', handler: () => {} }
 ]
 
-const formData = ref({
-  productType: '',
-  name: '',
-  slug: '',
-  description: '',
-  categories: [] as string[],
-})
+const formData = ref<ProductFormType>(props.initialForm)
 const newCategory = ref<string>('')
 
 const addCategory = (): void => {
@@ -48,6 +48,12 @@ watch(
   () => emit('update', formData),
   { deep: true }
 )
+
+watch(
+  props.initialForm,
+  () => { formData.value = props.initialForm },
+  { deep: true }
+)
 </script>
 <template>
   <div class="product-form-container">
@@ -56,8 +62,14 @@ watch(
       <div class="product-form-fields">
         <div class="form-group">
           <label for="productType">Product Type</label>
-          <select v-model="formData.productType" id="productType" required>
-            <option v-for="type in productTypes" :key="type" :value="type">{{ type }}</option>
+          <select v-model="formData.type" id="type" required>
+            <option
+              v-for="type in types"
+              :key="type.code"
+              :value="type.code"
+            >
+              {{ type.name }}
+            </option>
           </select>
         </div>
 
