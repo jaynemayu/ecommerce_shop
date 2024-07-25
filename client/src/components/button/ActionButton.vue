@@ -30,9 +30,13 @@ const props = withDefaults(defineProps<{
   min-width: 4.375rem;
   cursor: pointer;
   &-icon {
+    display: none;
     height: 1rem;
     width: 1rem;
     margin-right: .125rem;
+    @media (min-width: 769px) {
+      display: inline-block;
+    }
   }
   &.accent {
     background-color: $accent;

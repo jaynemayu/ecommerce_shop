@@ -52,14 +52,16 @@ const getImageUrl = (name: string): string => {
         <SearchBar
           @update="(val) => handleSearch(val)"
         />
-        <ActionButton
-          v-for="button in buttons"
-          :key="button.title"
-          :title="button.title"
-          :type="button.type"
-          :icon="button.icon"
-          @click="button.handler"
-        />
+        <div class="products-subheader-actions-buttons">
+          <ActionButton
+            v-for="button in buttons"
+            :key="button.title"
+            :title="button.title"
+            :type="button.type"
+            :icon="button.icon"
+            @click="button.handler"
+          />
+        </div>
       </div>
     </div>
     <DataTable
@@ -89,39 +91,5 @@ const getImageUrl = (name: string): string => {
   </div>
 </template>
 <style lang="scss">
-.products {
-  margin: 1.25rem;
-  width: 100%;
-  &-header {
-    @include font-medium;
-    @include font-14;
-  }
-  &-subheader {
-    @include row;
-    justify-content: space-between;
-    align-items: center;
-    &-info {
-      @include font-12;
-      color: $inactive;
-    }
-    &-actions {
-      @include row;
-      align-items: center;
-      gap: .375rem;
-      .search-bar {
-        width: 17.5rem;
-      }
-    }
-  }
-  &-table {
-    margin-top: 1.25rem;
-    img {
-      width: 1.5rem;
-    }
-    span {
-      vertical-align: top;
-      margin-left: .375rem;
-    }
-  }
-}
+@import './productList.scss';
 </style>

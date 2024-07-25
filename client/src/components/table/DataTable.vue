@@ -46,6 +46,9 @@ const props = defineProps<{
     padding: .125rem .375rem;
     height: 1.75rem;
     border: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   th {
     @include font-medium;
