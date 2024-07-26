@@ -43,7 +43,7 @@ const getImageUrl = (name: string): string => {
 </script>
 <template>
   <div class="products">
-    <h6 class="products-header">Products</h6>
+    <h6 class="header">Products</h6>
     <div class="products-subheader">
       <p class="products-subheader-info">
         {{ `${filteredProducts.length || 0} Products` }}

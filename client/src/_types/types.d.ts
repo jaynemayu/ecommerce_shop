@@ -66,3 +66,22 @@ export interface ProductFormType {
   description: string
   categories: string[]
 }
+
+export interface CustomerType {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+}
+
+export type OrderStatusType = 'processing' | 'shipped' | 'delivered' | 'canceled' | 'refunded'
+
+export interface OrderType {
+  id: string
+  orderNumber: string
+  customer: CustomerType
+  price: string
+  status: OrderStatusType
+  updatedAt: number
+  createdAt: number
+}

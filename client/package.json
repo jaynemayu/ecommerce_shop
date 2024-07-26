@@ -11,13 +11,15 @@
   "dependencies": {
     "@apollo/client": "^3.10.8",
     "@vue/apollo-composable": "^4.0.2",
+    "apexcharts": "^3.51.0",
     "dayjs": "^1.11.12",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "vue3-apexcharts": "^1.5.3"
   },
   "devDependencies": {
     "@rollup/plugin-graphql": "^2.0.4",

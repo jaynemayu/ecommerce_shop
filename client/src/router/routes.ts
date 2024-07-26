@@ -23,7 +23,7 @@ const productRoutes: RouteRecordRaw[] = [
 
 export const routes: RouteRecordRaw[] = [
   { path: '/', redirect: { name: 'Dashboard' } },
-  { path: '/dashboard', name: 'Dashboard', component: () => import('../views/DashboardView.vue') },
+  { path: '/dashboard', name: 'Dashboard', component: () => import('../views/dashboard/DashboardView.vue') },
   ...productRoutes,
   { path: '/orders', name: 'Orders', component: () => import('../views/OrderList.vue') },
   { path: '/discounts', name: 'Discounts', component: () => import('../views/DiscountList.vue') },
