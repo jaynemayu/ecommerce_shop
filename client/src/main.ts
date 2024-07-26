@@ -8,9 +8,15 @@ import router from './router'
 import './styles/main.scss'
 
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
-import { PrBars, PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive, PrArrowLeft, PrDollar, PrShoppingCart, PrShoppingBag, PrStar, PrEllipsisH } from 'oh-vue-icons/icons'
+import {
+  PrBars, PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive, PrArrowLeft,
+  PrDollar, PrShoppingCart, PrShoppingBag, PrStar, PrEllipsisH, LaFileExportSolid
+} from 'oh-vue-icons/icons'
 
-addIcons(PrBars, PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive, PrArrowLeft, PrDollar, PrShoppingCart, PrShoppingBag, PrStar, PrEllipsisH)
+addIcons(
+  PrBars, PrSearch, PrPlus, PrCheckSquare, PrFilter, PrTrash, PrCopy, BiArchive, PrArrowLeft,
+  PrDollar, PrShoppingCart, PrShoppingBag, PrStar, PrEllipsisH, LaFileExportSolid
+)
 
 const app = createApp({
   setup() {

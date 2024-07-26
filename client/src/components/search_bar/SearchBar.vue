@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const input = ref<string>('')
+const props = defineProps<{
+  placeholder: string
+}>()
 
 const emit = defineEmits<{
   update: [val: string]
 }>()
 
+const input = ref<string>('')
+
 const handleInputChange = (e: Event): void => {
   const value = (e.target as HTMLInputElement)?.value
   input.value = value
-  emit('update', value)
 }
 </script>
 <template>
@@ -21,8 +24,9 @@ const handleInputChange = (e: Event): void => {
       id="search"
       name="search"
       type="text"
-      placeholder="Search products..."
+      :placeholder="props.placeholder"
       @input="(e) => handleInputChange(e)"
+      @keyup.enter="() => $emit('update', input)"
     />
   </div>
 </template>

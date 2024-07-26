@@ -3,9 +3,7 @@
   width: 100%;
   &-subheader {
     @media (min-width: 769px) {
-      @include row;
-      justify-content: space-between;
-      align-items: center;
+      @include row-between;
     }
     &-info {
       @include font-12;

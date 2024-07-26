@@ -20,6 +20,7 @@ const buttons: ButtonType[] = [
   { title: 'New Product', type: 'success', icon: 'pr-plus', handler: () => router.push({ name: 'ProductNew' }) }
 ]
 
+// TODO: Add pagination
 const handleSearch = (val: string): void => {
   const searchVal = val.toLowerCase()
   if (!val) {
@@ -33,7 +34,7 @@ const handleSearch = (val: string): void => {
   }
 }
 
-const handleProductClick = (id: string): void => {
+const handleRowClick = (id: string): void => {
   router.push({ name: 'ProductEdit', params: { id } })
 }
 
@@ -50,6 +51,7 @@ const getImageUrl = (name: string): string => {
       </p>
       <div class="products-subheader-actions">
         <SearchBar
+          placeholder="Search products..."
           @update="(val) => handleSearch(val)"
         />
         <div class="products-subheader-actions-buttons">
@@ -71,7 +73,7 @@ const getImageUrl = (name: string): string => {
       <tr
         v-for="product in filteredProducts"
         :key="product.id"
-        @click="() => handleProductClick(product.id)"
+        @click="() => handleRowClick(product.id)"
       >
         <td>
           <!-- TODO: Add empty image grey rectangle -->
