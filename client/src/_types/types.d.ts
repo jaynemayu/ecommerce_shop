@@ -74,13 +74,13 @@ export interface CustomerType {
   email: string
 }
 
-export type OrderStatusType = 'processing' | 'shipped' | 'delivered' | 'canceled' | 'refunded'
+export type OrderStatusType = 'unfulfilled' | 'fulfilled' | 'refunded' | 'disputed'
 
 export interface OrderType {
   id: string
   orderNumber: string
   customer: CustomerType
-  price: string
+  total: string
   status: OrderStatusType
   updatedAt: number
   createdAt: number

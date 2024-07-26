@@ -14,9 +14,9 @@ const infoGroups = [
   { label: 'Average Rating', value: '4.5 / 5', icon: 'pr-star' }
 ]
 
-const headers = ['Order No.', 'Name', 'Email', 'Price', 'Status', 'Ordered On']
+const headers = ['Order Number', 'Status', 'Customer', 'Email', 'Date', 'Total']
 
-const filteredOrders = ref<OrderType[]>(orders as OrderType[])
+const recentOrders = ref<OrderType[]>(orders.slice(0, 10) as OrderType[])
 
 const columnOptions = {
   dataLabels: {
@@ -87,15 +87,15 @@ const donutSeries = [41, 24, 32, 3]
           <p class="dashboard-main-section-title">Recent Orders</p>
           <DataTable :headers="headers">
             <tr
-              v-for="order in filteredOrders"
+              v-for="order in recentOrders"
               :key="order.id"
             >
               <td>{{ order.orderNumber }}</td>
+              <td>{{ OrderStatus[order.status] }}</td>
               <td>{{ `${order.customer?.firstName} ${order.customer?.lastName}` }}</td>
               <td>{{ order.customer?.email }}</td>
-              <td>{{ order.price }}</td>
-              <td>{{ OrderStatus[order.status] }}</td>
               <td>{{ formatDateTime(order.createdAt) }}</td>
+              <td class="align-right">{{ order.total }}</td>
             </tr>
           </DataTable>
         </div>

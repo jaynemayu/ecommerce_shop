@@ -49,6 +49,9 @@ const props = defineProps<{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    &.align-right {
+      text-align: right;
+    }
   }
   th {
     @include font-medium;

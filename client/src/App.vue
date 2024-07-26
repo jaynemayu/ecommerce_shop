@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import useCurrentUser from '@/composables/useCurrentUser'
+import useMediaQuery from '@/composables/useMediaQuery'
 import TabsPanel from './components/navigation/TabsPanel.vue'
 
 const {
@@ -8,11 +9,11 @@ const {
   fetchCurrentUser
 } = useCurrentUser()
 
+const hideMenuRoutes = ['ShopNew', 'ProductNew', 'ProductEdit', 'ProductDetail']
+
 const mobileMenuRef = ref<InstanceType<typeof TabsPanel> | null>(null)
 const hamburgerRef = ref<HTMLButtonElement | null>(null)
 const showMobileMenu = ref<boolean>(false)
-
-const hideMenuRoutes = ['ShopNew', 'ProductNew', 'ProductEdit']
 
 const userInitials = computed<string>(() => {
   const firstInitial = currentUser.value?.firstName?.[0] || ''
@@ -20,6 +21,8 @@ const userInitials = computed<string>(() => {
 
   return `${firstInitial}${lastInitial}`
 })
+
+const isSmallScreen = useMediaQuery('(max-width: 768px)')
 
 const toggleShowMobileMenu = (): void => {
   showMobileMenu.value = !showMobileMenu.value
@@ -30,7 +33,7 @@ const handleClickOutside = (event: MouseEvent): void => {
   const hamburgerElement = hamburgerRef.value
 
   if (tabsPanelElement && !tabsPanelElement.contains(event.target as Node) &&
-      hamburgerElement && !hamburgerElement?.contains(event.target as Node)) {
+      hamburgerElement instanceof HTMLButtonElement && !hamburgerElement?.contains(event.target as Node)) {
       showMobileMenu.value = false
   }
 }
@@ -49,6 +52,7 @@ onBeforeUnmount(() => {
     <div class="main-header">
       <div class="main-header-left">
         <v-icon
+          v-if="isSmallScreen"
           name="pr-bars"
           ref="hamburgerRef"
           class="hamburger"
