@@ -38,6 +38,11 @@ h1 {
   }
 }
 
+.header {
+  @include font-medium;
+  @include font-14;
+}
+
 input {
   border: none;
   border-radius: .25rem;

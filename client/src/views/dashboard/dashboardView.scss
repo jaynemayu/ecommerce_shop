@@ -1,0 +1,101 @@
+$box-padding: .625rem;
+$border-width: .0625rem;
+$box-width: calc((100% / 4) - ($box-padding * 4));
+.dashboard {
+  margin: 1.25rem;
+  width: 100%;
+  &-main {
+    margin-top: 1.25rem;
+    &-section {
+      @include col;
+      gap: $box-padding;
+      height: fit-content;
+      margin-top: $box-padding;
+      @media (min-width: 769px) {
+        @include row;
+        margin-top: unset;
+        &:not(:first-child) {
+          margin-top: $box-padding;
+        }
+        &:first-child {
+          height: 5rem;
+        }
+        &:nth-child(2) {
+          height: 18rem;
+        }
+      }
+      &-title {
+        @include font-14;
+        @include font-semi-bold;
+      }
+      &-box {
+        @include row;
+        align-items: center;
+        gap: $box-padding;
+        padding: $box-padding;
+        border: $border-width solid $light-border;
+        border-radius: .25rem;
+        background-color: $white;
+        position: relative;
+        width: 20rem;
+        overflow-x: scroll;
+        @media (min-width: 769px) {
+          width: $box-width;
+        }
+        &.medium {
+          @include col;
+          align-items: flex-start;
+          @media (min-width: 769px) {
+            width: calc(($box-width * 2) + ($box-padding * 3) + ($border-width * 2));
+          }
+        }
+        &.wide {
+          @include col;
+          align-items: flex-start;
+          @media (min-width: 769px) {
+            width: calc(($box-width * 2) + ($box-padding * 3) + ($border-width * 2));
+          }
+        }
+        &.full {
+          @include col;
+          align-items: flex-start;
+          height: fit-content;
+          width: 20rem;
+          @media (min-width: 769px) {
+            width: calc(($box-width * 4) + ($box-padding * 9) + ($border-width * 6));
+          }
+        }
+        .icon-container {
+          @include row-center;
+          width: 2.5rem;
+          height: 2.5rem;
+          border: .25rem solid rgba(216, 212, 219, 0.6);
+          border-radius: 50%;
+          color: $white;
+          &.pr-dollar {
+            background-color: $orange;
+          }
+          &.pr-shopping-cart {
+            background-color: $success;
+          }
+          &.pr-shopping-bag {
+            background-color: $accent;
+          }
+          &.pr-star {
+            background-color: $caution;
+          }
+        }
+        &-info {
+          &-label {
+            @include font-12;
+            color: $inactive;
+          }
+          &-value {
+            @include font-14;
+            @include font-semi-bold;
+          }
+        }
+      }
+    }
+  }
+}
