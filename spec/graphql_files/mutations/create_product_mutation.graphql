@@ -1,0 +1,22 @@
+mutation($name: String!, $slug: String!, $status: ProductStatus!, $price: Float!, $productType: String!, $categories: [String!], $description: String) {
+  createProduct(input: {name: $name, slug: $slug, status: $status, price: $price, productType: $productType, categories: $categories, description: $description}) {
+    product {
+      id
+      name
+      slug
+      status
+      price
+      productType
+      categories
+      description
+      creator {
+        id
+        email
+      }
+      updater {
+        id
+        email
+      }
+    }
+  }
+}

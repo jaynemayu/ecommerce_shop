@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+FactoryBot.define do
+  factory :shop_user do
+    association :shop
+    association :user
+  end
+end
+
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: shop_users
@@ -20,9 +29,3 @@
 #  fk_rails_...  (shop_id => shops.id)
 #  fk_rails_...  (user_id => users.id)
 #
-FactoryBot.define do
-  factory :shop_user do
-    user { nil }
-    shop { nil }
-  end
-end
