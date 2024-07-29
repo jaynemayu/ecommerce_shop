@@ -34,6 +34,7 @@ module Mutations
       end
     end
 
+    # TODO: (Jayne) send email to set password
     def create_admin_user(email, first_name, last_name)
       admin_role = Role.find_by(level: 10)
       raise GraphQL::ExecutionError, 'Admin role not found' if admin_role.nil?

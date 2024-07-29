@@ -1,25 +1,21 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :role do
-    name { 'buyer' }
-    level { 1 }
+  factory :category do
+    name { 'Sample Category' }
   end
 end
 
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: roles
+# Table name: categories
 #
 #  id         :bigint           not null, primary key
 #  name       :string
-#  level      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_roles_on_name  (name) UNIQUE
+#  index_categories_on_name  (name) UNIQUE
 #
