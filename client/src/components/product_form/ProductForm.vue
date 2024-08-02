@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, withDefaults } from 'vue'
-import { ButtonType, ProductFormType } from '@/_types/types'
+import { ref, watch } from 'vue'
+import { ButtonType, CreateProductVariablesType } from '@/_types/types'
 import ActionButton from '@/components/button/ActionButton.vue'
 
 const props = withDefaults(defineProps<{
   showActions?: boolean
-  initialForm: ProductFormType
+  initialForm: CreateProductVariablesType
 }>(), {
   showActions: false
 })
@@ -29,7 +29,7 @@ const buttons: ButtonType[] = [
   { title: 'Duplicate', type: 'success', icon: 'pr-copy', handler: () => {} }
 ]
 
-const formData = ref<ProductFormType>(props.initialForm)
+const formData = ref<CreateProductVariablesType>(props.initialForm)
 const newCategory = ref<string>('')
 
 const addCategory = (): void => {
@@ -62,7 +62,7 @@ watch(
       <div class="product-form-fields">
         <div class="form-group">
           <label for="productType">Product Type</label>
-          <select v-model="formData.type" id="type" required>
+          <select v-model="formData.productType" id="type" required>
             <option
               v-for="type in types"
               :key="type.code"
@@ -86,6 +86,11 @@ watch(
         <div class="form-group">
           <label for="description">Description</label>
           <textarea v-model="formData.description" id="description" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="text" v-model="formData.price.amount" id="price" required />
         </div>
 
         <div class="form-group">

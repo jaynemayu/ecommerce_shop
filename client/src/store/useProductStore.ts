@@ -1,23 +1,23 @@
 import { ref, Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useApolloClient } from '@vue/apollo-composable'
-import { ShopType, QueryVariablesType, CreateShopVariablesType } from '@/_types/types'
-import shopsGql from '@/graphql/shops/shops.graphql'
-import createShopGql from '@/graphql/shops/createShop.graphql'
+import { ProductType, QueryVariablesType, CreateProductVariablesType } from '@/_types/types'
+import productsGql from '@/graphql/products/products.graphql'
+import createProductGql from '@/graphql/products/createProduct.graphql'
 
-export const useShopStore = defineStore('shop', () => {
+export const useProductStore = defineStore('product', () => {
   const client = useApolloClient().client
 
   const loading = ref(false)
 
-  const shops = ref<ShopType[]>([]) as Ref<ShopType[]>
+  const products = ref<ProductType[]>([]) as Ref<ProductType[]>
 
   // Queries
-  const fetchShops = async (variables: QueryVariablesType): Promise<boolean> => {
+  const fetchProducts = async (variables: QueryVariablesType): Promise<boolean> => {
     try {
       loading.value = true
       const { data, errors } = await client.query({
-        query: shopsGql,
+        query: productsGql,
         variables
       })
 
@@ -27,7 +27,7 @@ export const useShopStore = defineStore('shop', () => {
         return false
       }
 
-      shops.value = data.shops as ShopType[]
+      products.value = data.shops as ProductType[]
   
       return true
     } catch (error) {
@@ -40,12 +40,12 @@ export const useShopStore = defineStore('shop', () => {
   }
 
   // Mutations
-  const createShop = async (variables: CreateShopVariablesType): Promise<boolean> => {
+  const createProduct = async (variables: CreateProductVariablesType): Promise<boolean> => {
     try {
       loading.value = true
 
       const { errors } = await client.mutate({
-        mutation: createShopGql,
+        mutation: createProductGql,
         variables
       })
 
@@ -67,8 +67,8 @@ export const useShopStore = defineStore('shop', () => {
 
   return {
     loading,
-    shops,
-    fetchShops,
-    createShop
+    products,
+    fetchProducts,
+    createProduct
   }
 })

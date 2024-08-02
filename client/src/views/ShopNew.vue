@@ -7,7 +7,7 @@ const router = useRouter()
 
 const { formData, createShop } = useShops()
 
-const handleSubmit = async () => {
+const handleSubmit = async (): Promise<void> => {
   const success = await createShop(formData.value)
 
   if (success) {

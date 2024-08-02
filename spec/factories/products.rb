@@ -22,7 +22,7 @@ end
 #  id           :bigint           not null, primary key
 #  name         :string           not null
 #  slug         :string           not null
-#  status       :integer          default("published"), not null
+#  status       :integer          default("unpublished"), not null
 #  price        :decimal(10, 2)   not null
 #  product_type :string           not null
 #  description  :text

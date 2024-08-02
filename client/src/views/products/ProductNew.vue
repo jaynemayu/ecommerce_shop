@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ButtonType, ProductFormType } from '@/_types/types'
+import { ButtonType } from '@/_types/types'
+import useProducts from '@/composables/useProducts'
 import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 
 const router = useRouter()
 
+const {
+  formData,
+  createProduct
+} = useProducts()
+
+const handleSubmit = async (): Promise<void> => {
+  const success = await createProduct(formData.value)
+
+  if (success) {
+    console.log('Successfully created product')
+    router.push({ name: 'Products' })
+  } else {
+    console.log('Failed to create product')
+  }
+}
+
+// TODO: Add button dropdown to Publish product directly
 const buttons: ButtonType[] = [
   { title: 'Cancel', type: 'normal', handler: () => router.push({ name: 'Products' }) },
-  { title: 'Create', type: 'success', handler: () => router.push({ name: 'Products' }) }
+  { title: 'Save', type: 'success', handler: () => handleSubmit() }
 ]
-
-const formData = ref<ProductFormType>({
-  type: '',
-  name: '',
-  slug: '',
-  description: '',
-  categories: []
-})
 </script>
 <template>
   <div class="product-new">

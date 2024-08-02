@@ -9,18 +9,6 @@ export interface ShopType {
   admins: AdminType[]
 }
 
-export interface ShopsQueryVariablesType {
-  page: number
-  perPage: number
-}
-
-export interface CreateShopVariablesType {
-  shopName: string
-  adminEmail: string
-  adminFirstName: string
-  adminLastName: string
-}
-
 export interface CurrentUserType {
   id: string
   email: string
@@ -50,22 +38,17 @@ export interface ProductType {
   id: string
   name: string
   slug: string
-  status: 'published' | 'unpublished' | 'archived'
+  status: ProductStatusType
   price: string
-  type: 'physical' | 'digital' | 'service' | 'advanced'
+  type: ProductTypeType
   categories: string[]
   image: string
   updatedAt: number
   createdAt: number
 }
 
-export interface ProductFormType {
-  type: string
-  name: string
-  slug: string
-  description: string
-  categories: string[]
-}
+export type ProductStatusType = 'published' | 'unpublished' | 'archived'
+export type ProductTypeType = 'physical' | 'digital' | 'service' | 'advanced'
 
 export interface CustomerType {
   id: string
@@ -84,4 +67,33 @@ export interface OrderType {
   status: OrderStatusType
   updatedAt: number
   createdAt: number
+}
+
+export interface PriceType {
+  amount: string
+  currency: string
+}
+
+// Queries & Mutations
+
+export interface QueryVariablesType {
+  page: number
+  perPage: number
+}
+
+export interface CreateShopVariablesType {
+  shopName: string
+  adminEmail: string
+  adminFirstName: string
+  adminLastName: string
+}
+
+export interface CreateProductVariablesType {
+  name: string
+  slug: string
+  status: ProductStatusType | ''
+  price: PriceType
+  productType: ProductTypeType | ''
+  categories: string[]
+  description: string
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ButtonType, ProductFormType } from '@/_types/types'
+import { ButtonType, CreateProductVariablesType, ProductStatusType, ProductTypeType } from '@/_types/types'
 import ProductForm from '@/components/product_form/ProductForm.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 import products from '@/mock_data/products.json'
@@ -18,10 +18,12 @@ const buttons: ButtonType[] = [
   { title: 'Save', type: 'success', handler: () => router.push({ name: 'Products' }) }
 ]
 
-const formData = ref<ProductFormType>({
-  type: product.type,
+const formData = ref<CreateProductVariablesType>({
+  productType: product.type as ProductTypeType,
+  status: product.status as ProductStatusType,
   name: product.name,
   slug: product.slug,
+  price: product.price,
   description: product.description,
   categories: product.categories
 })
