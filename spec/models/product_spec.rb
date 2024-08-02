@@ -71,6 +71,7 @@ end
 #  price        :decimal(10, 2)   not null
 #  product_type :string           not null
 #  description  :text
+#  shop_id      :bigint           not null
 #  creator_id   :bigint           not null
 #  updater_id   :bigint           not null
 #  created_at   :datetime         not null
@@ -79,10 +80,12 @@ end
 # Indexes
 #
 #  index_products_on_creator_id  (creator_id)
+#  index_products_on_shop_id     (shop_id)
 #  index_products_on_updater_id  (updater_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (creator_id => users.id)
+#  fk_rails_...  (shop_id => shops.id)
 #  fk_rails_...  (updater_id => users.id)
 #
