@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     return if excluded_path?
+    return redirect_to after_sign_in_path_for(true), allow_other_host: true if user_signed_in?
 
     redirect_to new_user_session_path
   end
@@ -27,7 +28,9 @@ class ApplicationController < ActionController::Base
     [
       new_user_session_path,
       new_user_registration_path,
-      graphql_path
+      graphql_path,
+      upload_path,
+      "/download/#{params[:id]}"
     ].include?(request.path)
   end
 end

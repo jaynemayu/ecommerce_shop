@@ -48,10 +48,10 @@ RSpec.describe 'Products Query', type: :request do
 
     it 'returns products with pagination' do
       post '/graphql', params: { query:, variables: }, headers:, as: :json
-  
+
       json = JSON.parse(response.body, symbolize_names: true)
       results_products = json[:data][:products]
-  
+
       expect(results_products.size).to eq(20)
       expect(results_products.first[:name]).to eq(shop1_products.first.name)
       expect(results_products.first[:slug]).to eq(shop1_products.first.slug)
@@ -64,22 +64,22 @@ RSpec.describe 'Products Query', type: :request do
       expect(results_products.first[:updater][:email]).to eq(shop1_product_updater.email)
       expect(response).to have_http_status(:success)
     end
-  
+
     it 'paginates results' do
       post '/graphql', params: { query:, variables: { page: 2, perPage: 20 } }, headers:, as: :json
-  
+
       json = JSON.parse(response.body, symbolize_names: true)
       products = json[:data][:products]
-  
+
       expect(products.size).to eq(5)
     end
-  
+
     it 'defaults to the first page if no page is provided' do
       post '/graphql', params: { query: }, headers:, as: :json
-  
+
       json = JSON.parse(response.body, symbolize_names: true)
       products = json[:data][:products]
-  
+
       expect(products.size).to eq(20)
     end
   end
@@ -95,8 +95,6 @@ RSpec.describe 'Products Query', type: :request do
 
       expect(results_products.size).to eq(0)
       expect(response).to have_http_status(:success)
-
     end
-      
   end
 end
