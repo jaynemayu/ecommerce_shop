@@ -5,6 +5,7 @@
 module Types
   class ProductStatusType < Types::BaseEnum
     value :unknown
+    value :unpublished
     value :published
     value :archived
   end

@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
-  enum status: { published: 0, archived: 1, hidden: 2 }
+  enum status: { unpublished: 0, published: 1, archived: 2, hidden: 3 }
 
   validates :name, :slug, :status, :price, :product_type, presence: true
 end
@@ -21,7 +21,7 @@ end
 #  id           :bigint           not null, primary key
 #  name         :string           not null
 #  slug         :string           not null
-#  status       :integer          default("published"), not null
+#  status       :integer          default("unpublished"), not null
 #  price        :decimal(10, 2)   not null
 #  product_type :string           not null
 #  description  :text
