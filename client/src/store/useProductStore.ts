@@ -27,7 +27,7 @@ export const useProductStore = defineStore('product', () => {
         return false
       }
 
-      products.value = data.shops as ProductType[]
+      products.value = data.products as ProductType[]
   
       return true
     } catch (error) {
