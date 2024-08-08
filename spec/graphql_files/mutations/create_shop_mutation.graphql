@@ -20,5 +20,10 @@ mutation CreateShop(
       firstName
       lastName
     }
+    error {
+      code
+      message
+      type
+    }
   }
 }

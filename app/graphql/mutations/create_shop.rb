@@ -1,30 +1,44 @@
 # frozen_string_literal: true
 
-# app/graphql/mutations/create_shop.rb
-
 module Mutations
   class CreateShop < BaseMutation
+    include Auth
+
     argument :shop_name, String, required: true
     argument :admin_email, String, required: true
     argument :admin_first_name, String, required: true
     argument :admin_last_name, String, required: true
 
-    field :shop, Types::ShopType, null: false
-    field :admin_user, Types::UserType, null: false
+    field :shop, Types::ShopType, null: true
+    field :admin_user, Types::UserType, null: true
+    field :error, Types::ErrorType, null: true
 
     def resolve(args)
+      return error!(403, 'You do not have permission to create a shop.', 'UNAUTHORIZED') unless super_admin?
+
       validate_uniqueness(args[:admin_email], args[:shop_name])
 
       admin_user = create_admin_user(args[:admin_email], args[:admin_first_name], args[:admin_last_name])
-      shop = Shop.create!(name: args[:shop_name])
-      shop.admins << admin_user
 
-      { shop:, admin_user: }
-    rescue ActiveRecord::RecordInvalid => e
-      raise GraphQL::ExecutionError, e.message
+      shop = create_shop_and_shop_admin!(args[:shop_name], admin_user)
+
+      { shop:, admin_user:, error: nil }
+    rescue GraphQL::ExecutionError, ActiveRecord::RecordInvalid => e
+      Rails.logger.info "Failed to create shop: #{e.message}"
+
+      error!(422, e.message, 'INVALID')
     end
 
     private
+
+    def create_shop_and_shop_admin!(shop_name, admin_user)
+      shop = Shop.new(name: shop_name)
+      shop.admins << admin_user
+
+      raise ActiveRecord::RecordInvalid, shop unless shop.save
+
+      shop
+    end
 
     def validate_uniqueness(email, shop_name)
       if User.exists?(email:)
@@ -36,7 +50,7 @@ module Mutations
 
     # TODO: (Jayne) send email to set password
     def create_admin_user(email, first_name, last_name)
-      admin_role = Role.find_by(level: 10)
+      admin_role = Role.find_by(level: Role::SHOP_ADMIN_LEVEL)
       raise GraphQL::ExecutionError, 'Admin role not found' if admin_role.nil?
 
       User.create!(

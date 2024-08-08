@@ -36,20 +36,20 @@ RSpec.describe Mutations::CreateShop, type: :request do
   it 'creates a shop and an admin user' do
     post '/graphql', params: { query: mutation, variables: }, as: :json
 
-    json = JSON.parse(response.body, symbolize_names: true)
-    data = json[:data][:createShop]
+    res_data = JSON.parse(response.body, symbolize_names: true).dig(:data, :createShop)
 
-    expect(data[:shop][:name]).to eq(variables[:shopName])
-    expect(data[:adminUser][:email]).to eq(variables[:adminEmail])
-    expect(data[:adminUser][:firstName]).to eq(variables[:adminFirstName])
-    expect(data[:adminUser][:lastName]).to eq(variables[:adminLastName])
+    expect(res_data[:shop][:name]).to eq(variables[:shopName])
+    expect(res_data[:adminUser][:email]).to eq(variables[:adminEmail])
+    expect(res_data[:adminUser][:firstName]).to eq(variables[:adminFirstName])
+    expect(res_data[:adminUser][:lastName]).to eq(variables[:adminLastName])
+    expect(res_data[:error]).to be_nil
     expect(response).to have_http_status(:success)
 
-    shop_record = Shop.find_by(id: data[:shop][:id])
+    shop_record = Shop.find_by(id: res_data[:shop][:id])
     expect(shop_record).to be_present
     expect(shop_record.name).to eq(variables[:shopName])
 
-    shop_admin_record = User.find_by(id: data[:adminUser][:id])
+    shop_admin_record = User.find_by(id: res_data[:adminUser][:id])
     expect(shop_admin_record).to be_present
     expect(shop_admin_record.email).to eq(variables[:adminEmail])
     expect(shop_admin_record.first_name).to eq(variables[:adminFirstName])
@@ -57,27 +57,33 @@ RSpec.describe Mutations::CreateShop, type: :request do
 
     shop_and_shop_admin_relationship = ShopUser.find_by(shop_id: shop_record.id, user_id: shop_admin_record.id)
     expect(shop_and_shop_admin_relationship).to be_present
+
+    expect(res_data[:error]).to be_nil
   end
 
   it 'returns an error if the shop name already exists' do
     create(:shop, name: variables[:shopName])
     post '/graphql', params: { query: mutation, variables: }, as: :json
 
-    json = JSON.parse(response.body, symbolize_names: true)
-    errors = json[:errors]
+    res_data = JSON.parse(response.body, symbolize_names: true).dig(:data, :createShop)
+    res_error = res_data[:error]
 
-    expect(errors).to be_present
-    expect(errors.first[:message]).to eq('Shop name is already taken')
+    expect(res_error).to be_present
+    expect(res_error[:code]).to eq(422)
+    expect(res_error[:type]).to eq('INVALID')
+    expect(res_error[:message]).to eq('Shop name is already taken')
   end
 
   it 'returns an error if the email is already taken' do
     create(:user, email: variables[:adminEmail], role: admin_role)
     post '/graphql', params: { query: mutation, variables: }, as: :json
 
-    json = JSON.parse(response.body, symbolize_names: true)
-    errors = json[:errors]
+    res_data = JSON.parse(response.body, symbolize_names: true).dig(:data, :createShop)
+    res_error = res_data[:error]
 
-    expect(errors).to be_present
-    expect(errors.first[:message]).to eq('Email is already taken')
+    expect(res_error).to be_present
+    expect(res_error[:code]).to eq(422)
+    expect(res_error[:type]).to eq('INVALID')
+    expect(res_error[:message]).to eq('Email is already taken')
   end
 end

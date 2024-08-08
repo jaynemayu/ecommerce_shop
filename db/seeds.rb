@@ -19,7 +19,7 @@ CSV.foreach(csv_file_path, headers: true) do |row|
 end
 
 if User.count == 0
-  super_admin_role = Role.find_by(level: 99)
+  super_admin_role = Role.find_by(level: Role::SUPER_ADMIN_LEVEL)
   User.create!(
     first_name: 'Super',
     last_name: 'Admin',
