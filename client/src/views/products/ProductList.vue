@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { formatDateTime } from '@/utils/datetime'
 import { ProductType as Product, ButtonType } from '@/_types/types'
 import { ProductStatus, ProductType } from '@/enums/product'
+import { formatPrice } from '@/utils/format'
+import useProducts from '@/composables/useProducts'
 import DataTable from '@/components/table/DataTable.vue'
 import ActionButton from '@/components/button/ActionButton.vue'
 import SearchBar from '@/components/search_bar/SearchBar.vue'
-import products from '@/mock_data/products.json'
 
 const router = useRouter()
 
-const filteredProducts = ref<Product[]>(products as Product[])
+const {
+  products,
+  handleFetchProducts
+} = useProducts()
 
-const headers: string[] = ['Name', 'Status', 'Price', 'Category', 'Modified', 'Published']
+const filteredProducts = ref<Product[]>(products.value as Product[])
+
+const headers: string[] = ['Name', 'Status', 'Price', 'Type', 'Modified', 'Published']
 const buttons: ButtonType[] = [
   { title: 'Filter', type: 'normal', icon: 'pr-filter', handler: () => {} },
   { title: 'Select', type: 'normal', icon: 'pr-check-square', handler: () => {} },
@@ -24,9 +30,9 @@ const buttons: ButtonType[] = [
 const handleSearch = (val: string): void => {
   const searchVal = val.toLowerCase()
   if (!val) {
-    filteredProducts.value = products as Product[]
+    filteredProducts.value = products.value as Product[]
   } else {
-    filteredProducts.value = products.filter(product => {
+    filteredProducts.value = products.value.filter(product => {
       const nameWords = product.name.toLowerCase().split(' ')
 
       return nameWords.some(word => word.includes(searchVal))
@@ -38,9 +44,15 @@ const handleRowClick = (id: string): void => {
   router.push({ name: 'ProductEdit', params: { id } })
 }
 
-const getImageUrl = (name: string): string => {
-  return new URL(`/src/assets/images/${name}.png`, import.meta.url)?.href
+const getImageUrl = (name?: string): string => {
+  return new URL(`/src/assets/images/${name || 'issue_04'}.png`, import.meta.url)?.href
 }
+
+onMounted(async () => {
+  await handleFetchProducts()
+
+  filteredProducts.value = products.value as Product[]
+})
 </script>
 <template>
   <div class="products">
@@ -77,15 +89,16 @@ const getImageUrl = (name: string): string => {
       >
         <td>
           <!-- TODO: Add empty image grey rectangle -->
+          <!-- TODO: Add image to product -->
           <img
-            :src="getImageUrl(product.image)"
+            :src="getImageUrl()"
             alt="Product thumbnail"
           />
           <span>{{ product.name }}</span>
         </td>
         <td>{{ ProductStatus[product.status] }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ ProductType[product.type] }}</td>
+        <td>{{ formatPrice(product.price) }}</td>
+        <td>{{ ProductType[product.productType] }}</td>
         <td>{{ formatDateTime(product.updatedAt) }}</td>
         <td>{{ formatDateTime(product.createdAt) }}</td>
       </tr>

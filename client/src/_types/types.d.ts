@@ -39,8 +39,8 @@ export interface ProductType {
   name: string
   slug: string
   status: ProductStatusType
-  price: string
-  type: ProductTypeType
+  price: PriceType
+  productType: ProductTypeType
   categories: string[]
   image: string
   updatedAt: number
