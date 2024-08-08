@@ -14,10 +14,10 @@ module Auth
   end
 
   def shop_admin?
-    context[:current_user].role&.level == 10
+    context[:current_user].role&.level == Role::SHOP_ADMIN_LEVEL
   end
 
   def super_admin?
-    context[:current_user].role&.level == 99
+    context[:current_user].role&.level == Role::SUPER_ADMIN_LEVEL
   end
 end
