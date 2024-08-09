@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: postgres:16.3
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: blog_admin
+      POSTGRES_PASSWORD: a12345678
+      POSTGRES_DB: ecommerce_shop
+  web:
+    build: .
+    command: ["rails", "server", "-b", "0.0.0.0"]
+    volumes:
+      - ".:/app"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://blog_admin:a12345678@db:5432/ecommerce_shop
+volumes:
+  postgres_data:
